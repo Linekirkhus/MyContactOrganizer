@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+
+	<script th:replace="fragments/header :: headelements"></script>
+<link th:href="@{/CSS/style.css}" rel="stylesheet" type="text/css" />
+	<title>AddressBook || Register</title>
+</head>
+<body>
+<div th:replace="fragments/navbar">
+
+</div>
+<div class="container">
+
+	<form method="POST" class="form-signin" th:object="${user}" th:action="@{/register}">
+		<h2 class="form-signin-heading">Create your account</h2>
+
+
+		<div class="form-group">
+			<label for="firstname"></label>
+			<input type="text" th:field="*{firstname}" class="form-control" placeholder="First Name"
+				  id="firstname" autofocus required>
+			<span class="has-error" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span>
+		</div>
+
+		<div class="form-group">
+			<label for="lastname"></label>
+			<input type="text" th:field="*{lastname}" class="form-control" placeholder="Last Name"
+				  id="lastname" autofocus required>
+			<span class="has-error" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
+		</div>
+
+		<div class="form-group">
+			<label for="username"></label>
+			<input type="text" th:field="*{email}" class="form-control"
+				 name="username" id="username"  placeholder="you@excample.com" autofocus required>
+			<span class="has-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+		</div>
+
+		<div class="form-group">
+			<label for="password"></label>
+			<input type="password" th:field="*{password}" class="form-control"
+				   name="password" id="password" placeholder="Password" autofocus required>
+			<span class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+		</div>
+
+		<div class="form-group">
+			<input type="password" th:field="*{passwordConfirm}" class="form-control"
+				   placeholder="Confirm your password">
+			<span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>
+		</div>
+
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+	</form>
+
+</div>
+
+		<p>Already Registered. <a href="login.html">Login</a></p>
+<div th:replace="fragments/content :: footer">
+</div>
+</body>
+</html>

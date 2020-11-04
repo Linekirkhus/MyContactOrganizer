@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script th:replace="fragments/header :: header"></script>
+    <title>AddressBook</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <div th:if="${param.error}">
+        <div class="alert alert-danger login-error">Incorrect username or password.</div>
+    </div>
+    <div th:if="${param.logout}">
+        <div class="alert alert-info col-xs-offset-1 col-xs-10">
+            You have logged out.
+        </div>
+    </div>
+    <div class="container">
+    <form class="login-form" th:action="@{/login}" method="POST">
+        <input type="hidden" name="${_crf.parameterName}" value="{_crf.token"/>
+        <h2 class="form-heading">Log in</h2>
+
+                <div class="form-group">
+                    <label for="username">Enter email: </label>
+                    <input type="text" name="username" placeholder="email"
+                          id="username" class="form-control" >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password: </label>
+                    <input type="password" name="password"  placeholder="Password"
+                    id="password" class="form-control">
+                </div>
+        <div>
+                <input type="submit" name="login-submit" id="login-submit" class="btn btn-lg btn-primary btn-block" value="Login"/>
+        </div>
+        <div>
+            <h3>Not registered yet? </h3>
+            <a th:href="@{/register}" class="btn btn-default">Register</a>
+        </div>
+    </form>
+    </div>
+</div>
+
+<div th:replace="fragments/content :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script th:replace="fragments/header :: headelements"></script>
+    <title>AddressBook</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+
+<div id="welcome-container" class="container">
+
+    <h1> MyContactOrganizer || AddressBook</h1>
+    <h2>Customize, Secure and Organize your People and Places </h2>
+    <h5>Do you want to create your own secure address book? </h5>
+
+    <a href="/register" class="btn btn-primary">Register</a>
+
+       <h3>Do you already have an account?</h3>
+        <h3 th:text="${'Welcome back ' + #httpServletRequest.remoteUser}"></h3>
+        <a href="/login" class="btn btn-primary">Login</a>
+</div>
+
+
+<form  th:action="@{/logout}" method="POST">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <input type="submit" class="btn btn-primary" value="Logout"/>
+</form>
+<div th:replace="fragments/content :: footer"></div>
+
+</body>
+</html>
